@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 import mm.com.fairway.movie.api.ApiClient
@@ -59,15 +60,18 @@ class DetailMovieFragment : Fragment(), SimilarMovieAdapter.ClickListener {
         detailViewModel.setRecommendationLoad(id)
         observeMovieList()
         recylerview_actor.apply {
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+          //  layoutManager = GridLayoutManager(context, 3)
             adapter = actorAdapter
         }
         recylerview_similar.apply {
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+          //  layoutManager = GridLayoutManager(context,GridLayoutManager.HORIZONTAL )
             adapter = similarAdapter
         }
         recylerview_recommendation.apply {
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+         //   layoutManager = GridLayoutManager(context, 3)
             adapter = recommenAdapter
         }
 
@@ -95,14 +99,16 @@ class DetailMovieFragment : Fragment(), SimilarMovieAdapter.ClickListener {
     fun observeMovieList() {
         detailViewModel.getActorLoad().observe(viewLifecycleOwner, Observer<ActorsList> { movie ->
 
-            actorAdapter.updateMovie(movie as ArrayList<Cast>)
+            actorAdapter.updateMovie(movie.cast as ArrayList<Cast>)
         })
         detailViewModel.getSimilarLoad().observe(viewLifecycleOwner, Observer<MovieList> { movie ->
-            similarAdapter.updateMovie(movie as ArrayList<Result>)
+            similarAdapter.updateMovie(movie.results as ArrayList<Result>)
         })
         detailViewModel.getRecommendationLoad()
             .observe(viewLifecycleOwner, Observer<MovieList> { movie ->
-                recommenAdapter.updateMovie(movie as ArrayList<Result>)
+                recommenAdapter.updateMovie(
+                    movie.results as ArrayList<Result>
+                )
             })
 
     }

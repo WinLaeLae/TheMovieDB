@@ -36,7 +36,7 @@ lateinit var  result: Result
        }
         fun bind(result: Result) {
             this.result=result
-            itemView.title_txt.text = result.title
+          // itemView.title_txt.text = result.title
             Picasso.get().load(ApiClient.imageUrl + result.poster_path)
                 .placeholder(R.drawable.bg_image).into(itemView.img_movie)
 
