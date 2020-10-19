@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_popular">
+
+    <fragment
+        android:id="@+id/nav_popular"
+        android:name="mm.com.fairway.themoviedb.ui.popular.PopularFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_popular" >
+        <action
+            android:id="@+id/action_nav_popular_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_now_playing"
+        android:name="mm.com.fairway.themoviedb.ui.nowPlaying.NowPlayingFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_now_playing" >
+        <action
+            android:id="@+id/action_nav_now_playing_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_top_rated"
+        android:name="mm.com.fairway.themoviedb.ui.topRated.TopRatedFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_top_rated" >
+        <action
+            android:id="@+id/action_nav_top_rated_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="mm.com.fairway.themoviedb.ui.MovieDetail.DetailMovieFragment"
+        android:label="Movie Detail"
+        tools:layout="@layout/fragment_detail_movie" >
+        <argument
+            android:name="movieID"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_detailMovieFragment_self"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+</navigation>
